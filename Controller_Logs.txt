@@ -1,0 +1,1027 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Kamal>ipconfig
+
+Windows IP Configuration
+
+
+Ethernet adapter Ethernet:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : home
+
+Unknown adapter Local Area Connection 2:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Ethernet adapter Ethernet 3:
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::2910:7ea5:b6a6:99e3%14
+   IPv4 Address. . . . . . . . . . . : 192.168.56.1
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . :
+
+Unknown adapter Local Area Connection 3:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Wireless LAN adapter Local Area Connection* 1:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Wireless LAN adapter Local Area Connection* 2:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Wireless LAN adapter Wi-Fi:
+
+   Connection-specific DNS Suffix  . : home
+   IPv4 Address. . . . . . . . . . . : 192.168.2.16
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.2.1
+
+Ethernet adapter Ethernet 4:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Ethernet adapter Bluetooth Network Connection:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+C:\Users\Kamal>ssh -p 2222 mininet@localhost
+ssh: connect to host localhost port 2222: Connection refused
+
+C:\Users\Kamal>ssh -p 22 mininet@localhost
+ssh: connect to host localhost port 22: Connection refused
+
+C:\Users\Kamal>ssh -p 2222 mininet@localhost
+ssh: connect to host localhost port 2222: Connection refused
+
+C:\Users\Kamal>ssh -p 2222 mininet@192.168.2.16
+The authenticity of host '[192.168.2.16]:2222 ([192.168.2.16]:2222)' can't be established.
+ED25519 key fingerprint is SHA256:EKJrKSjE/HGAmUxIRIRCAeu0G4XeuFX3WmCRL1s8nBM.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[192.168.2.16]:2222' (ED25519) to the list of known hosts.
+mininet@192.168.2.16's password:
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-42-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+New release '22.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+Last login: Mon Dec  1 15:48:56 2025
+mininet@mininet-vm:~$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255
+        ether 08:00:27:a8:ae:79  txqueuelen 1000  (Ethernet)
+        RX packets 1913  bytes 182845 (182.8 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1907  bytes 171628 (171.6 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 5992  bytes 301640 (301.6 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 5992  bytes 301640 (301.6 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+mininet@mininet-vm:~$ cd /media/sf_MININET_RESOURCES
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ LS
+LS: command not found
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ ls
+A2                           File_small-topo.py      Saron           small-topo3.py  small-topo7.py
+File_OperationSaveTheDay.py  OperationSaveTheDay.py  small-topo2.py  small-topo4.py  small-topo.py
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ ls
+A2                           OperationSaveTheDay.py  small-topo3.py  small-topo.py
+File_OperationSaveTheDay.py  Saron                   small-topo4.py  topo.py
+File_small-topo.py           small-topo2.py          small-topo7.py
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ sudo python3 topo.py
+* Adding controller
+Unable to contact the remote controller at 127.0.0.1:6633
+* Add switches
+* Add hosts
+* Add links
+* Starting network
+*** Configuring hosts
+h1 h2
+* Starting controllers
+* Starting switches
+* Testing connectivity
+*** Ping: testing ping reachability
+h1 -> X
+h2 -> X
+*** Results: 100% dropped (0/2 received)
+* CLI
+*** Starting CLI:
+mininet> pingall
+*** Ping: testing ping reachability
+h1 -> ^@X
+h2 -> X
+*** Results: 100% dropped (0/2 received)
+mininet> exit
+*** Stopping 1 controllers
+c0
+*** Stopping 6 links
+......
+*** Stopping 4 switches
+s2 s3 s4 s5
+*** Stopping 2 hosts
+h1 h2
+*** Done
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ sudo mn -c
+*** Removing excess controllers/ofprotocols/ofdatapaths/pings/noxes
+killall controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+killall -9 controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+pkill -9 -f "sudo mnexec"
+*** Removing junk from /tmp
+rm -f /tmp/vconn* /tmp/vlogs* /tmp/*.out /tmp/*.log
+*** Removing old X11 tunnels
+*** Removing excess kernel datapaths
+ps ax | egrep -o 'dp[0-9]+' | sed 's/dp/nl:/'
+***  Removing OVS datapaths
+ovs-vsctl --timeout=1 list-br
+ovs-vsctl --timeout=1 list-br
+*** Removing all links of the pattern foo-ethX
+ip link show | egrep -o '([-_.[:alnum:]]+-eth[[:digit:]]+)'
+ip link show
+*** Killing stale mininet node processes
+pkill -9 -f mininet:
+*** Shutting down stale tunnels
+pkill -9 -f Tunnel=Ethernet
+pkill -9 -f .ssh/mn
+rm -f ~/.ssh/mn/*
+*** Cleanup complete.
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ ls
+A2                           File_small-topo.py      small-topo2.py  small-topo7.py
+controller_with_dijkstra.py  OperationSaveTheDay.py  small-topo3.py  small-topo.py
+File_OperationSaveTheDay.py  Saron                   small-topo4.py  topo.py
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ sudo python3 controller_with_dijkstra.py
+Traceback (most recent call last):
+  File "controller_with_dijkstra.py", line 1, in <module>
+    import core
+ModuleNotFoundError: No module named 'core'
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ sudo python3 topo.py
+* Adding controller
+Unable to contact the remote controller at 127.0.0.1:6633
+* Add switches
+* Add hosts
+* Add links
+* Starting network
+*** Configuring hosts
+h1 h2
+* Starting controllers
+* Starting switches
+* Testing connectivity
+*** Ping: testing ping reachability
+h1 -> X
+h2 -> X
+*** Results: 100% dropped (0/2 received)
+* CLI
+*** Starting CLI:
+mininet> exit
+*** Stopping 1 controllers
+c0
+*** Stopping 6 links
+......
+*** Stopping 4 switches
+s2 s3 s4 s5
+*** Stopping 2 hosts
+h1 h2
+*** Done
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ sudo mn -c
+*** Removing excess controllers/ofprotocols/ofdatapaths/pings/noxes
+killall controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+killall -9 controller ofprotocol ofdatapath ping nox_corelt-nox_core ovs-openflowd ovs-controllerovs-testcontroller udpbwtest mnexec ivs ryu-manager 2> /dev/null
+pkill -9 -f "sudo mnexec"
+*** Removing junk from /tmp
+rm -f /tmp/vconn* /tmp/vlogs* /tmp/*.out /tmp/*.log
+*** Removing old X11 tunnels
+*** Removing excess kernel datapaths
+ps ax | egrep -o 'dp[0-9]+' | sed 's/dp/nl:/'
+***  Removing OVS datapaths
+ovs-vsctl --timeout=1 list-br
+ovs-vsctl --timeout=1 list-br
+*** Removing all links of the pattern foo-ethX
+ip link show | egrep -o '([-_.[:alnum:]]+-eth[[:digit:]]+)'
+ip link show
+*** Killing stale mininet node processes
+pkill -9 -f mininet:
+*** Shutting down stale tunnels
+pkill -9 -f Tunnel=Ethernet
+pkill -9 -f .ssh/mn
+rm -f ~/.ssh/mn/*
+*** Cleanup complete.
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ sudo cp /media/sf_MININET_RESOURCES/controller_with_dijkstra.py ~/pox/pox/misc/
+mininet@mininet-vm:/media/sf_MININET_RESOURCES$ cd ~/pox
+mininet@mininet-vm:~/pox$ ./pox.py log.level --DEBUG misc.controller_with_dijkstra
+POX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+Traceback (most recent call last):
+  File "/home/mininet/pox/pox/boot.py", line 74, in do_import2
+    __import__(name, level=0)
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 779, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 915, in get_code
+  File "<frozen importlib._bootstrap_external>", line 972, in get_data
+PermissionError: [Errno 13] Permission denied: '/home/mininet/pox/pox/misc/controller_with_dijkstra.py'
+Could not import module: misc.controller_with_dijkstra
+mininet@mininet-vm:~/pox$ sudo chown mininet:mininet ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ chmod 644 ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ ./pox.py log.level --DEBUG misc.controller_with_dijkstra
+POX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Starting SDN Controller with Dijkstra's Algorithm
+INFO:misc.controller_with_dijkstra:============================================================
+Traceback (most recent call last):
+  File "/home/mininet/pox/pox/boot.py", line 524, in boot
+    if _do_launch(argv):
+  File "/home/mininet/pox/pox/boot.py", line 235, in _do_launch
+    if f(*pparams, **params) is False:
+  File "/home/mininet/pox/pox/misc/controller_with_dijkstra.py", line 340, in launch
+    core.openflow.addListenerByName("ConnectionUp", _handle_ConnectionUp)
+AttributeError: module 'core' has no attribute 'openflow'
+mininet@mininet-vm:~/pox$ ./pox.py log.level --DEBUG openflow.discovery misc.controller_with_dijkstra
+POX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Starting SDN Controller with Dijkstra's Algorithm
+INFO:misc.controller_with_dijkstra:============================================================
+WARNING:core:Warning: Registered 'openflow_discovery' multipled times
+Traceback (most recent call last):
+  File "/home/mininet/pox/pox/boot.py", line 524, in boot
+    if _do_launch(argv):
+  File "/home/mininet/pox/pox/boot.py", line 235, in _do_launch
+    if f(*pparams, **params) is False:
+  File "/home/mininet/pox/pox/misc/controller_with_dijkstra.py", line 340, in launch
+    core.openflow.addListenerByName("ConnectionUp", _handle_ConnectionUp)
+AttributeError: module 'core' has no attribute 'openflow'
+mininet@mininet-vm:~/pox$ sudo cp /media/sf_MININET_RESOURCES/controller_with_dijkstra_fixed.py ~/pox/pox/misc/
+mininet@mininet-vm:~/pox$ sudo chown mininet:mininet ~/pox/pox/misc/controller_with_dijkstra_fixed.py
+mininet@mininet-vm:~/pox$ ./pox.py log.level --DEBUG openflow.discovery misc.controller_with_dijkstra_fixed
+POX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+Traceback (most recent call last):
+  File "/home/mininet/pox/pox/boot.py", line 524, in boot
+    if _do_launch(argv):
+  File "/home/mininet/pox/pox/boot.py", line 235, in _do_launch
+    if f(*pparams, **params) is False:
+  File "/home/mininet/pox/pox/misc/controller_with_dijkstra_fixed.py", line 329, in launch
+    core.openflow.addListenerByName("ConnectionUp", _handle_ConnectionUp)
+AttributeError: module 'core' has no attribute 'openflow'
+mininet@mininet-vm:~/pox$ ls
+debug-pox.py  LICENSE  OperationSaveTheDay.py  pox.py       README.md  tests
+ext           NOTICE   pox                     __pycache__  setup.cfg  tools
+mininet@mininet-vm:~/pox$ sudo cp /media/sf_MININET_RESOURCES/controller_with_dijkstra_fixed.py ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ ls
+debug-pox.py  LICENSE  OperationSaveTheDay.py  pox.py       README.md  tests
+ext           NOTICE   pox                     __pycache__  setup.cfg  tools
+mininet@mininet-vm:~/pox$ sudo chown mininet:mininet ~/pox/pox/misc/controller_with_dijkstra_fixed.py
+mininet@mininet-vm:~/pox$ chmod 644 ~/pox/pox/misc/controller_with_dijkstra_fixed.py
+mininet@mininet-vm:~/pox$ ./pox.py log.level --DEBUG openflow.discovery misc.controller_with_dijkstra_fixed
+POX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+Traceback (most recent call last):
+  File "/home/mininet/pox/pox/boot.py", line 524, in boot
+    if _do_launch(argv):
+  File "/home/mininet/pox/pox/boot.py", line 235, in _do_launch
+    if f(*pparams, **params) is False:
+  File "/home/mininet/pox/pox/misc/controller_with_dijkstra_fixed.py", line 329, in launch
+    core.openflow.addListenerByName("ConnectionUp", _handle_ConnectionUp)
+AttributeError: module 'core' has no attribute 'openflow'
+mininet@mininet-vm:~/pox$ sudo cp /media/sf_MININET_RESOURCES/controller_with_dijkstra_fixed2.py ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ sudo chown mininet:mininet ~/pox/pox/misc/controller_with_dijkstra_fixed2.py
+chown: cannot access '/home/mininet/pox/pox/misc/controller_with_dijkstra_fixed2.py': No such file or directory
+mininet@mininet-vm:~/pox$ rm ~/pox/pox/misc/controller_with_dijkstra_fixed.py
+mininet@mininet-vm:~/pox$ /media/sf_MININET_RESOURCES/controller_with_dijkstra_v2.py ~/pox/pox/misc/controller_with_dijkstra.py
+-bash: /media/sf_MININET_RESOURCES/controller_with_dijkstra_v2.py: No such file or directory
+mininet@mininet-vm:~/pox$ /media/sf_MININET_RESOURCES/controller_with_dijkstra_v2.py ~/pox/pox/misc/controller_with_dijkstra.py
+-bash: /media/sf_MININET_RESOURCES/controller_with_dijkstra_v2.py: No such file or directory
+mininet@mininet-vm:~/pox$ /media/sf_MININET_RESOURCES/controller_with_dijkstra_v2.py ~/pox/pox/misc/controller_with_dijkstra.py
+-bash: /media/sf_MININET_RESOURCES/controller_with_dijkstra_v2.py: No such file or directory
+mininet@mininet-vm:~/pox$ /media/sf_MININET_RESOURCES/controller_with_dijkstra_v2.py ~/pox/pox/misc/controller_with_dijkstra.py
+-bash: /media/sf_MININET_RESOURCES/controller_with_dijkstra_v2.py: No such file or directory
+mininet@mininet-vm:~/pox$ sudo chown mininet:mininet ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ chmod 644 ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ sudo chown mininet:mininet ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ ./pox.py openflow.of_01 --port=6633 openflow.discovery misc.controller_with_dijkstraPOX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+Traceback (most recent call last):
+  File "/home/mininet/pox/pox/boot.py", line 524, in boot
+    if _do_launch(argv):
+  File "/home/mininet/pox/pox/boot.py", line 235, in _do_launch
+    if f(*pparams, **params) is False:
+  File "/home/mininet/pox/pox/misc/controller_with_dijkstra.py", line 343, in launch
+    core.call_when_ready(_start_controller, ['openflow', 'openflow_discovery'])
+AttributeError: module 'core' has no attribute 'call_when_ready'
+INFO:misc.controller_with_dijkstra:External Failure API Server running on port 8000
+INFO:misc.controller_with_dijkstra:Endpoints: /failure, /restore, /status
+mininet@mininet-vm:~/pox$ ./pox.py openflow.of_01 --port=6633 openflow.discovery misc.controller_with_dijkstraPOX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+Traceback (most recent call last):
+  File "/home/mininet/pox/pox/boot.py", line 524, in boot
+    if _do_launch(argv):
+  File "/home/mininet/pox/pox/boot.py", line 235, in _do_launch
+    if f(*pparams, **params) is False:
+  File "/home/mininet/pox/pox/misc/controller_with_dijkstra.py", line 343, in launch
+    core.call_when_ready(_start_controller, ['openflow', 'openflow_discovery'])
+AttributeError: module 'core' has no attribute 'call_when_ready'
+INFO:misc.controller_with_dijkstra:External Failure API Server running on port 8000
+INFO:misc.controller_with_dijkstra:Endpoints: /failure, /restore, /status
+mininet@mininet-vm:~/pox$ cp /media/sf_MININET_RESOURCES/controller_compatible.py ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ ./pox.py openflow.of_01 --port=6633 openflow.discovery misc.controller_with_dijkstraPOX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+Traceback (most recent call last):
+  File "/home/mininet/pox/pox/boot.py", line 524, in boot
+    if _do_launch(argv):
+  File "/home/mininet/pox/pox/boot.py", line 235, in _do_launch
+    if f(*pparams, **params) is False:
+  File "/home/mininet/pox/pox/misc/controller_with_dijkstra.py", line 325, in launch
+    core.openflow.addListenerByName("ConnectionUp", _handle_ConnectionUp)
+AttributeError: module 'core' has no attribute 'openflow'
+INFO:misc.controller_with_dijkstra:External Failure API Server running on port 8000
+INFO:misc.controller_with_dijkstra:Endpoints: /failure, /restore, /status
+mininet@mininet-vm:~/pox$ cp /media/sf_MININET_RESOURCES/controller_compatible.py ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ ./pox.py openflow.of_01 --port=6633 openflow.discovery misc.controller_with_dijkstraPOX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+Traceback (most recent call last):
+  File "/home/mininet/pox/pox/boot.py", line 524, in boot
+    if _do_launch(argv):
+  File "/home/mininet/pox/pox/boot.py", line 235, in _do_launch
+    if f(*pparams, **params) is False:
+  File "/home/mininet/pox/pox/misc/controller_with_dijkstra.py", line 339, in launch
+    core.callDelayed(1, _register_handlers)
+AttributeError: module 'core' has no attribute 'callDelayed'
+INFO:misc.controller_with_dijkstra:External Failure API Server running on port 8000
+INFO:misc.controller_with_dijkstra:Endpoints: /failure, /restore, /status
+mininet@mininet-vm:~/pox$ cp /media/sf_MININET_RESOURCES/controller_compatible.py ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ ./pox.py openflow.of_01 --port=6633 openflow.discovery misc.controller_with_dijkstraPOX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+INFO:misc.controller_with_dijkstra:External Failure API Server running on port 8000
+INFO:misc.controller_with_dijkstra:Endpoints: /failure, /restore, /status
+WARNING:version:Support for Python 3 is experimental.
+INFO:core:POX 0.7.0 (gar) is up.
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+INFO:openflow.of_01:[00-00-00-00-00-04 1] connected
+INFO:openflow.of_01:[00-00-00-00-00-03 2] connected
+INFO:openflow.of_01:[00-00-00-00-00-05 3] connected
+INFO:openflow.discovery:link detected: 00-00-00-00-00-04.3 -> 00-00-00-00-00-05.2
+INFO:openflow.discovery:link detected: 00-00-00-00-00-03.3 -> 00-00-00-00-00-05.1
+INFO:openflow.of_01:[00-00-00-00-00-02 4] connected
+INFO:openflow.discovery:link detected: 00-00-00-00-00-04.1 -> 00-00-00-00-00-02.2
+INFO:openflow.discovery:link detected: 00-00-00-00-00-03.2 -> 00-00-00-00-00-02.1
+INFO:openflow.discovery:link detected: 00-00-00-00-00-05.2 -> 00-00-00-00-00-04.3
+INFO:openflow.discovery:link detected: 00-00-00-00-00-02.2 -> 00-00-00-00-00-04.1
+INFO:openflow.discovery:link detected: 00-00-00-00-00-05.1 -> 00-00-00-00-00-03.3
+INFO:openflow.discovery:link detected: 00-00-00-00-00-02.1 -> 00-00-00-00-00-03.2
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+^CINFO:core:Going down...
+INFO:openflow.of_01:[00-00-00-00-00-04 1] disconnected
+INFO:openflow.of_01:[00-00-00-00-00-03 2] disconnected
+INFO:openflow.of_01:[00-00-00-00-00-05 3] disconnected
+INFO:openflow.of_01:[00-00-00-00-00-02 4] disconnected
+INFO:core:Down.
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+ERROR:misc.controller_with_dijkstra:Failed to register handlers: module 'core' has no attribute 'openflow'
+^CException ignored in: <module 'threading' from '/usr/lib/python3.8/threading.py'>
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/threading.py", line 1388, in _shutdown
+    lock.acquire()
+KeyboardInterrupt:
+mininet@mininet-vm:~/pox$ cp /media/sf_MININET_RESOURCES/controller_compatible.py ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ ./pox.py openflow.of_01 --port=6633 openflow.discovery misc.controller_with_dijkstraPOX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+INFO:misc.controller_with_dijkstra:External Failure API Server running on port 8000
+INFO:misc.controller_with_dijkstra:Endpoints: /failure, /restore, /status
+WARNING:version:Support for Python 3 is experimental.
+INFO:core:POX 0.7.0 (gar) is up.
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Dijkstra-based SDN Controller launched successfully
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:openflow.of_01:[00-00-00-00-00-04 1] connected
+INFO:misc.controller_with_dijkstra:Switch 4 connected
+INFO:openflow.of_01:[00-00-00-00-00-03 2] connected
+INFO:misc.controller_with_dijkstra:Switch 3 connected
+INFO:openflow.of_01:[00-00-00-00-00-05 3] connected
+INFO:misc.controller_with_dijkstra:Switch 5 connected
+INFO:openflow.discovery:link detected: 00-00-00-00-00-04.3 -> 00-00-00-00-00-05.2
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 4-5 (ports 3-2)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-03.3 -> 00-00-00-00-00-05.1
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 3-5 (ports 3-1)
+INFO:openflow.of_01:[00-00-00-00-00-02 4] connected
+INFO:misc.controller_with_dijkstra:Switch 2 connected
+INFO:openflow.discovery:link detected: 00-00-00-00-00-04.1 -> 00-00-00-00-00-02.2
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 4-2 (ports 1-2)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-03.2 -> 00-00-00-00-00-02.1
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 3-2 (ports 2-1)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-05.2 -> 00-00-00-00-00-04.3
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 5-4 (ports 2-3)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-02.2 -> 00-00-00-00-00-04.1
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 2-4 (ports 2-1)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-05.1 -> 00-00-00-00-00-03.3
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 5-3 (ports 1-3)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-02.1 -> 00-00-00-00-00-03.2
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 2-3 (ports 1-2)
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+^CINFO:core:Going down...
+INFO:openflow.of_01:[00-00-00-00-00-04 1] disconnected
+WARNING:misc.controller_with_dijkstra:REMOVED adjacency: 4-5
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 1
+INFO:misc.controller_with_dijkstra:============================================================
+WARNING:misc.controller_with_dijkstra:REMOVED adjacency: 4-2
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+ERROR:misc.controller_with_dijkstra:No path found between 3 and 4
+ERROR:misc.controller_with_dijkstra:Cannot establish path - network may be partitioned
+WARNING:misc.controller_with_dijkstra:REMOVED adjacency: 5-4
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+ERROR:misc.controller_with_dijkstra:No path found between 3 and 4
+ERROR:misc.controller_with_dijkstra:Cannot establish path - network may be partitioned
+WARNING:misc.controller_with_dijkstra:REMOVED adjacency: 2-4
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+ERROR:misc.controller_with_dijkstra:No path found between 3 and 4
+ERROR:misc.controller_with_dijkstra:Cannot establish path - network may be partitioned
+INFO:openflow.of_01:[00-00-00-00-00-03 2] disconnected
+WARNING:misc.controller_with_dijkstra:REMOVED adjacency: 3-5
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+ERROR:misc.controller_with_dijkstra:No path found between 3 and 4
+ERROR:misc.controller_with_dijkstra:Cannot establish path - network may be partitioned
+WARNING:misc.controller_with_dijkstra:REMOVED adjacency: 3-2
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+ERROR:misc.controller_with_dijkstra:No path found between 3 and 4
+ERROR:misc.controller_with_dijkstra:Cannot establish path - network may be partitioned
+WARNING:misc.controller_with_dijkstra:REMOVED adjacency: 5-3
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+ERROR:misc.controller_with_dijkstra:No path found between 3 and 4
+ERROR:misc.controller_with_dijkstra:Cannot establish path - network may be partitioned
+WARNING:misc.controller_with_dijkstra:REMOVED adjacency: 2-3
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+ERROR:misc.controller_with_dijkstra:No path found between 3 and 4
+ERROR:misc.controller_with_dijkstra:Cannot establish path - network may be partitioned
+INFO:openflow.of_01:[00-00-00-00-00-05 3] disconnected
+INFO:openflow.of_01:[00-00-00-00-00-02 4] disconnected
+INFO:core:Down.
+mininet@mininet-vm:~/pox$ cp /media/sf_MININET_RESOURCES/controller_compatible.py ~/pox/pox/misc/controller_with_dijkstra.py
+mininet@mininet-vm:~/pox$ ./pox.py openflow.of_01 --port=6633 openflow.discovery misc.controller_with_dijkstraPOX 0.7.0 (gar) / Copyright 2011-2020 James McCauley, et al.
+INFO:misc.controller_with_dijkstra:External Failure API Server running on port 8000
+INFO:misc.controller_with_dijkstra:Endpoints: /failure, /restore, /status
+WARNING:version:Support for Python 3 is experimental.
+INFO:core:POX 0.7.0 (gar) is up.
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Dijkstra-based SDN Controller launched successfully
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:openflow.of_01:[00-00-00-00-00-04 1] connected
+INFO:misc.controller_with_dijkstra:Switch 4 connected
+INFO:openflow.of_01:[00-00-00-00-00-03 2] connected
+INFO:misc.controller_with_dijkstra:Switch 3 connected
+INFO:openflow.of_01:[00-00-00-00-00-05 3] connected
+INFO:misc.controller_with_dijkstra:Switch 5 connected
+INFO:openflow.discovery:link detected: 00-00-00-00-00-04.3 -> 00-00-00-00-00-05.2
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 4-5 (ports 3-2)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-03.3 -> 00-00-00-00-00-05.1
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 3-5 (ports 3-1)
+INFO:openflow.of_01:[00-00-00-00-00-02 4] connected
+INFO:misc.controller_with_dijkstra:Switch 2 connected
+INFO:openflow.discovery:link detected: 00-00-00-00-00-04.1 -> 00-00-00-00-00-02.2
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 4-2 (ports 1-2)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-03.2 -> 00-00-00-00-00-02.1
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 3-2 (ports 2-1)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-05.2 -> 00-00-00-00-00-04.3
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 5-4 (ports 2-3)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-02.2 -> 00-00-00-00-00-04.1
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 2-4 (ports 2-1)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-05.1 -> 00-00-00-00-00-03.3
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 5-3 (ports 1-3)
+INFO:openflow.discovery:link detected: 00-00-00-00-00-02.1 -> 00-00-00-00-00-03.2
+INFO:misc.controller_with_dijkstra:ADDED adjacency: 2-3 (ports 1-2)
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+WARNING:misc.controller_with_dijkstra:============================================================
+WARNING:misc.controller_with_dijkstra:LINK FAILURE DETECTED: 3 <-> 2
+WARNING:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Recomputing path to avoid failed link...
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 5, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 5, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 5
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S5 via port 3
+INFO:misc.controller_with_dijkstra:  S5 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S5 via port 3
+INFO:misc.controller_with_dijkstra:  S5 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:LINK RESTORED: 3 <-> 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Recomputing optimal path...
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:LINK RESTORED: 3 <-> 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Recomputing optimal path...
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+WARNING:misc.controller_with_dijkstra:============================================================
+WARNING:misc.controller_with_dijkstra:LINK FAILURE DETECTED: 3 <-> 2
+WARNING:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Recomputing path to avoid failed link...
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 5, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 5, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 5
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S5 via port 3
+INFO:misc.controller_with_dijkstra:  S5 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S5 via port 3
+INFO:misc.controller_with_dijkstra:  S5 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:LINK RESTORED: 3 <-> 2
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Recomputing optimal path...
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 2, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 2
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S2 via port 2
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S2 via port 1
+INFO:misc.controller_with_dijkstra:  S2 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================
+WARNING:misc.controller_with_dijkstra:============================================================
+WARNING:misc.controller_with_dijkstra:LINK FAILURE DETECTED: 3 <-> 2
+WARNING:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Recomputing path to avoid failed link...
+INFO:misc.controller_with_dijkstra:Computing path from S3 to S4...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 5, 4] (length: 2)
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Installing flows for path: [3, 5, 4]
+INFO:misc.controller_with_dijkstra:============================================================
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 3
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 5
+INFO:misc.controller_with_dijkstra:Cleared flows on switch 4
+INFO:misc.controller_with_dijkstra:Forward direction (H1 \u2192 H2):
+INFO:misc.controller_with_dijkstra:  S3 \u2192 S5 via port 3
+INFO:misc.controller_with_dijkstra:  S5 \u2192 S4 via port 2
+INFO:misc.controller_with_dijkstra:Reverse direction (H2 \u2192 H1):
+INFO:misc.controller_with_dijkstra:  S4 \u2192 S5 via port 3
+INFO:misc.controller_with_dijkstra:  S5 \u2192 S3 via port 1
+INFO:misc.controller_with_dijkstra:Installing edge flows:
+INFO:misc.controller_with_dijkstra:  S3 \u2192 H1 via port 1
+INFO:misc.controller_with_dijkstra:  S4 \u2192 H2 via port 2
+INFO:misc.controller_with_dijkstra:============================================================

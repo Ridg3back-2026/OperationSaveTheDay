@@ -1,0 +1,72 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Kamal>ssh -p 2222 mininet@192.168.2.16
+mininet@192.168.2.16's password:
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-42-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+New release '22.04.5 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+Last login: Mon Dec  1 18:07:18 2025 from 192.168.2.16
+mininet@mininet-vm:~$ curl -X POST http://localhost:8000/failure -d "a=3&b=2"
+
+Command 'curl' not found, but can be installed with:
+
+sudo apt install curl
+
+mininet@mininet-vm:~$ sudo apt install curl
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  libcurl4
+The following NEW packages will be installed:
+  curl libcurl4
+0 upgraded, 2 newly installed, 0 to remove and 393 not upgraded.
+Need to get 396 kB of archives.
+After this operation, 1,129 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 libcurl4 amd64 7.68.0-1ubuntu2.25 [235 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal-updates/main amd64 curl amd64 7.68.0-1ubuntu2.25 [162 kB]
+Fetched 396 kB in 0s (898 kB/s)
+Selecting previously unselected package libcurl4:amd64.
+(Reading database ... 101827 files and directories currently installed.)
+Preparing to unpack .../libcurl4_7.68.0-1ubuntu2.25_amd64.deb ...
+Unpacking libcurl4:amd64 (7.68.0-1ubuntu2.25) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../curl_7.68.0-1ubuntu2.25_amd64.deb ...
+Unpacking curl (7.68.0-1ubuntu2.25) ...
+Setting up libcurl4:amd64 (7.68.0-1ubuntu2.25) ...
+Setting up curl (7.68.0-1ubuntu2.25) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9) ...
+mininet@mininet-vm:~$ curl -X POST http://localhost:8000/failure -d "a=3&b=2"
+Failure injected on 3-2
+mininet@mininet-vm:~$ curl -X POST http://localhost:8000/restore -d "a=3&b=2"
+
+INFO:misc.controller_with_dijkstra:LINK RESTORED: 3 <-> 2
+INFO:misc.controller_with_dijkstra:Recomputing optimal path...
+INFO:misc.controller_with_dijkstra:Dijkstra found path: [3, 2, 4]Link restored on 3-2
+mininet@mininet-vm:~$ ```
+>
+> **POX terminal should show:**
+> ```
+**POX: command not found
+mininet@mininet-vm:~$ INFO:misc.controller_with_dijkstra:LINK RESTORED: 3 <-> 2
+-bash: -: No such file or directory
+mininet@mininet-vm:~$ INFO:misc.controller_with_dijkstra:Recomputing optimal path...
+INFO:misc.controller_with_dijkstra:Recomputing: command not found
+mininet@mininet-vm:~$ curl -X POST http://localhost:8000/restore -d "a=3&b=2"
+Link restored on 3-2
+mininet@mininet-vm:~$ curl -X POST http://localhost:8000/failure -d "a=3&b=2"
+Failure injected on 3-2
+mininet@mininet-vm:~$ curl -X POST http://localhost:8000/restore -d "a=3&b=2"
+Link restored on 3-2
+mininet@mininet-vm:~$ curl -X POST http://localhost:8000/failure -d "a=3&b=2"
+Failure injected on 3-2
+mininet@mininet-vm:~$
